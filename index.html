@@ -1,234 +1,470 @@
- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohamed Abdelghany | Web Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <canvas id="particles-canvas"></canvas>
-
-  <nav class="navbar">
-    <a href="#hero" class="nav-link active">Home</a>
-    <a href="#about" class="nav-link">About</a>
-    <a href="#projects" class="nav-link">Projects</a>
-    <a href="#contact" class="nav-link">Contact</a>
-  </nav>
-
-  <section id="hero" class="hero-section">
-    <div class="hero-content">
-      <p class="sub-heading">Web Developer</p>
-      <h1>Expert In Building High-Converting, Performance-Driven Websites That Help Businesses Grow And Scale.</h1>
-      <a href="https://wa.me/201210153756" target="_blank" class="btn btn-primary">
-        Contact Me <i class="fa-regular fa-paper-plane"></i>
-      </a>
-    </div>
-    <div class="hero-image-container">
-      <span class="bg-large-text">mohamed</span>
-      <img src="WhatsApp Image 2026-07-29 at 6.00.47 PM.jpeg" alt="Mohamed Abdelghany" class="hero-img">
-    </div>
-  </section>
-
-  <section id="about" class="about-section">
-    <h2 class="section-title">ABOUT ME</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Abdulghany | Frontend Developer & UI/UX Specialist</title>
     
-    <div class="about-container">
-      <div class="about-card-img">
-        <img src="photo_2026-08-02_04-05-35.jpg" alt="Mohamed Abdelghany">
-      </div>
-      
-      <div class="about-details">
-        <h3>Web Developer</h3>
-        <p>I build modern, responsive, and high-converting web interfaces. I focus on performance, scalability, and clean UI architecture.</p>
-        
-        <ul class="info-list">
-          <li><i class="fa-solid fa-user"></i> <span>Name:</span> Mohamed Abdelghany</li>
-          <li><i class="fa-solid fa-location-dot"></i> <span>Location:</span> Egypt</li>
-        </ul>
+    <!-- Tailwind CSS CDN -->
+    <script src="Java-Script/3.4.17"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#00f2fe',
+                            blue: '#4facfe',
+                            purple: '#7f00ff',
+                            dark: '#030712',
+                            card: '#0b1329',
+                            border: 'rgba(255, 255, 255, 0.08)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h4>10+</h4>
-            <p>Projects</p>
-          </div>
-          <div class="stat-card">
-            <h4>3+</h4>
-            <p>Experience</p>
-          </div>
-          <div class="stat-card">
-            <h4>99%</h4>
-            <p>Client Satisfaction</p>
-          </div>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="css/css2.css" rel="stylesheet">
+    
+    <!-- مكتبة GSAP للأنيميشن الاحترافي -->
+    <script src="libary/gsap.min.js"></script>
+
+    <!-- ملف الـ CSS المخصص -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-brand-dark text-slate-100 font-['Cairo'] overflow-x-hidden selection:bg-brand-cyan selection:text-black">
+
+    <!-- خلفية الجزيئات الحركية التفاعلية -->
+    <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+    
+    <!-- مؤشر الماوس الضوئي المتحرك -->
+    <div id="cursor-glow" class="fixed w-[450px] h-[450px] rounded-full pointer-events-none z-0 blur-[130px] bg-brand-cyan/10 -translate-x-1/2 -translate-y-1/2 transition-transform duration-75"></div>
+
+    <!-- ==================== الناف بار الفخم للتنقل بين الصفحات ==================== -->
+    <header class="fixed top-4 left-0 w-full z-50 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto backdrop-blur-2xl bg-brand-dark/80 border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] px-6 h-20 flex items-center justify-between transition-all duration-300">
+            
+            <!-- اللوجو الشخصي المتوهج -->
+            <a href="#" onclick="switchPage('home')" class="text-xl sm:text-2xl font-black tracking-wider flex items-center gap-2 group cursor-pointer">
+                <span class="bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple bg-clip-text text-transparent group-hover:brightness-125 transition duration-300">
+                    M.ABDULGHANY
+                </span>
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan animate-ping"></span>
+            </a>
+
+            <!-- أزرار التنقل الفخمة بين الصفحات من الناف بار -->
+            <nav class="hidden md:flex items-center gap-1.5 bg-white/5 p-1.5 rounded-xl border border-white/10 font-semibold text-sm text-slate-300">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-tab active px-4 py-2 rounded-lg transition duration-300">الرئيسية</button>
+                <button onclick="switchPage('about')" id="nav-about" class="nav-tab px-4 py-2 rounded-lg transition duration-300">عني</button>
+                <button onclick="switchPage('skills')" id="nav-skills" class="nav-tab px-4 py-2 rounded-lg transition duration-300">المهارات</button>
+                <button onclick="switchPage('projects')" id="nav-projects" class="nav-tab px-4 py-2 rounded-lg transition duration-300">معرض الأعمال</button>
+                <button onclick="switchPage('services')" id="nav-services" class="nav-tab px-4 py-2 rounded-lg transition duration-300">الخدمات</button>
+                <button onclick="switchPage('contact')" id="nav-contact" class="nav-tab px-4 py-2 rounded-lg transition duration-300">التواصل</button>
+            </nav>
+
+            <!-- زر تواصل واتساب -->
+            <a href="https://wa.me/201210153756" target="_blank" class="relative group overflow-hidden px-6 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-[0_0_25px_rgba(0,242,254,0.6)] transition duration-300 flex items-center gap-2">
+                <span class="relative z-10 flex items-center gap-2">
+                    <span>تواصل معي</span>
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحات الديناميكي -->
+    <main class="relative z-10 pt-32 pb-16 min-h-[85vh]">
+
+        <!-- ==================== صفحة الرئيسية Home Page ==================== -->
+        <div id="page-home" class="page-content active-page max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[65vh]">
+                
+                <div class="space-y-6 text-center lg:text-right">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="text-sm font-semibold text-slate-300">متاح الآن للمشاريع والعمل الحر</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-black leading-tight">
+                        أنا <br>
+                        <span class="bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple bg-clip-text text-transparent">Mohamed Abdulghany</span>
+                    </h1>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-300">
+                        مطور واجهات <span id="typing-text" class="text-brand-cyan border-b-2 border-brand-cyan"></span>
+                    </h2>
+
+                    <p class="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Expert In Building High-Converting, Performance-Driven Websites That Help Businesses Grow And Scale.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+                        <button onclick="switchPage('projects')" class="px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-[0_0_30px_rgba(0,242,254,0.5)] hover:scale-105 transition duration-300 flex items-center gap-3">
+                            <i class="fa-solid fa-rocket"></i> استكشف أعمالي
+                        </button>
+                        <button onclick="switchPage('contact')" class="px-8 py-4 rounded-xl font-bold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-brand-cyan hover:scale-105 transition duration-300 flex items-center gap-3">
+                            <i class="fa-solid fa-paper-plane"></i> تواصل معي
+                        </button>
+                    </div>
+                </div>
+
+                <!-- الكارت الـ 3D التفاعلي -->
+                <div class="flex justify-center">
+                    <div class="tilt-card relative w-80 h-80 sm:w-[420px] sm:h-[420px] rounded-3xl p-3 bg-gradient-to-br from-brand-cyan/40 via-transparent to-brand-purple/40 border border-white/20 shadow-[0_0_60px_rgba(0,242,254,0.25)]">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-3xl blur-2xl opacity-30 -z-10 animate-pulse"></div>
+                        <div class="w-full h-full rounded-2xl overflow-hidden bg-brand-card border border-white/10 relative group">
+                            <!-- ضع صورتك الشخصية بملف باسم your-photo.jpg -->
+                            <img src="img/WhatsApp Image 2026-07-29 at 6.00.47 PM.jpeg" alt="Mohamed Abdulghany" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-70"></div>
+                            
+                            <div class="absolute bottom-2 left-6 right-6 p-3 rounded-xl bg-brand-dark/80 backdrop-blur-md border border-white/10 flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-bold text-sm text-white">Frontend & UI/UX</h4>
+                                    <p class="text-xs text-brand-cyan">Performance-Driven</p>
+                                </div>
+                                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <a href="https://wa.me/201210153756" target="_blank" class="btn btn-secondary">
-          Get In Touch <i class="fa-brands fa-whatsapp"></i>
-        </a>
-      </div>
+        <!-- ==================== صفحة عني About Page ==================== -->
+        <div id="page-about" class="page-content hidden max-w-5xl mx-auto px-6 space-y-16">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black">
+                    نبذة <span class="text-brand-cyan">عني</span>
+                </h2>
+                <p class="text-slate-300 text-xl leading-relaxed max-w-3xl mx-auto">
+                    متخصص في تطوير واجهات المستخدم وتصميم تجارب المستخدم (UI/UX) بأعلى معايير الجودة والأداء، لمساعدة الأنشطة التجارية على النمو والانتشار الرقمي.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl bg-brand-card border border-white/10 text-center space-y-3">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">أكواد نظيفة</h3>
+                    <p class="text-slate-400 text-sm">هيكلة برمجية واضحة وموثوقة سهلة التطوير والتعديل.</p>
+                </div>
+
+                <div class="p-8 rounded-3xl bg-brand-card border border-white/10 text-center space-y-3">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">سرعة فائقة</h3>
+                    <p class="text-slate-400 text-sm">تحسين أداء الصفحات لتجربة تصفح سريعة وممتازة.</p>
+                </div>
+
+                <div class="p-8 rounded-3xl bg-brand-card border border-white/10 text-center space-y-3">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-brand-purple/10 text-brand-purple flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">تصميم تفاعلي</h3>
+                    <p class="text-slate-400 text-sm">واجهات مستخدم عصرية تتكيف بسلاسة مع كافة الأجهزة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== صفحة المهارات والتقنيات Skills Page ==================== -->
+        <div id="page-skills" class="page-content hidden max-w-7xl mx-auto px-6 space-y-16">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black">
+                    المهارات و<span class="text-brand-cyan">التقنيات</span>
+                </h2>
+                <p class="text-slate-400 max-w-lg mx-auto">الأدوات البرمجية وتصميم واجهات المستخدم التي أتقنها</p>
+            </div>
+
+            <!-- شبكة مهاراتك بالمربعات الفخمة وهوفير تلسكوبي وتأثير 3D -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- HTML -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-orange-500 hover:shadow-[0_0_35px_rgba(249,115,22,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-black transition duration-300">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">HTML</h3>
+                </div>
+
+                <!-- CSS -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-blue-500 hover:shadow-[0_0_35px_rgba(59,130,246,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-black transition duration-300">
+                        <i class="fa-brands fa-css3-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">CSS</h3>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-yellow-400 hover:shadow-[0_0_35px_rgba(250,204,21,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-yellow-400/10 text-yellow-400 flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-yellow-400 group-hover:text-black transition duration-300">
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">JavaScript</h3>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(34,211,238,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-cyan-400/10 text-cyan-400 flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition duration-300">
+                        <i class="fa-brands fa-css3"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Tailwind CSS</h3>
+                </div>
+
+                <!-- Bootstrap -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition duration-300">
+                        <i class="fa-brands fa-bootstrap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Bootstrap</h3>
+                </div>
+
+                <!-- React -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-brand-cyan hover:shadow-[0_0_35px_rgba(0,242,254,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-brand-cyan group-hover:text-black transition duration-300">
+                        <i class="fa-brands fa-react"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">React</h3>
+                </div>
+
+                <!-- UI -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(52,211,153,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-black transition duration-300">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">UI Design</h3>
+                </div>
+
+                <!-- UX -->
+                <div class="skill-card tilt-card p-6 rounded-2xl bg-brand-card border border-white/10 hover:border-brand-purple hover:shadow-[0_0_35px_rgba(127,0,255,0.35)] transition duration-300 text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-purple/10 text-brand-purple flex items-center justify-center text-4xl mb-4 group-hover:scale-110 group-hover:bg-brand-purple group-hover:text-white transition duration-300">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">UX Research</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== صفحة معرض الأعمال Projects Page ==================== -->
+        <div id="page-projects" class="page-content hidden max-w-7xl mx-auto px-6 space-y-16">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black">
+                    معرض <span class="text-brand-cyan">الأعمال</span>
+                </h2>
+                <p class="text-slate-400 max-w-lg mx-auto">اضغط على أي مشروع لعرض التفاصيل الكاملة (يمكنك تكرار الكارت بكل سهولة لإضافة مشاريع بلا حدود)</p>
+            </div>
+
+            <!-- شبكة معارض الأعمال الثلاثة (قابلة للتكرار) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- المشروع الأول -->
+                <div class="project-card tilt-card rounded-3xl overflow-hidden bg-brand-card border border-white/10 hover:border-brand-cyan hover:shadow-[0_15px_40px_rgba(0,242,254,0.25)] transition duration-500 group cursor-pointer"
+                     data-title="المشروع الأول: منصة متجر إلكتروني متكاملة"
+                     data-desc="مشروع احترافي لإدارة وتصفح المنتجات وعرض سلة المشتريات بواجهات سريعة وعالية الأداء."
+                     data-tags="React, Tailwind, JavaScript"
+                     data-img="project1.jpg"
+                     data-live="https://example.com"
+                     data-github="https://github.com">
+                    
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="project1.jpg" alt="المشروع الأول" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-brand-dark/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="px-6 py-3 rounded-full bg-brand-cyan text-slate-950 font-bold text-sm shadow-[0_0_20px_rgba(0,242,254,0.6)]">معاينة تفاصيل المشروع <i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold group-hover:text-brand-cyan transition">المشروع الأول: متجر إلكتروني</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">منصة تسوق متطورة ومصممة لزيادة المبيعات والسرعة.</p>
+                        <div class="flex gap-2 pt-2">
+                            <span class="px-3 py-1 rounded-md bg-white/5 text-xs text-brand-cyan border border-white/10">React</span>
+                            <span class="px-3 py-1 rounded-md bg-white/5 text-xs text-brand-blue border border-white/10">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المشروع الثاني -->
+                <div class="project-card tilt-card rounded-3xl overflow-hidden bg-brand-card border border-white/10 hover:border-brand-blue hover:shadow-[0_15px_40px_rgba(79,172,254,0.25)] transition duration-500 group cursor-pointer"
+                     data-title="المشروع الثاني: لوحة تحكم وإحصائيات SaaS"
+                     data-desc="لوحة قياس وتحليل بيانات متقدمة للشركات مع رسوم بيانية تفاعلية وتصميم UI/UX مذهل."
+                     data-tags="React, Bootstrap, UI/UX"
+                     data-img="project2.jpg"
+                     data-live="https://example.com"
+                     data-github="https://github.com">
+                    
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="project2.jpg" alt="المشروع الثاني" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-brand-dark/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="px-6 py-3 rounded-full bg-brand-blue text-slate-950 font-bold text-sm shadow-[0_0_20px_rgba(79,172,254,0.6)]">معاينة تفاصيل المشروع <i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold group-hover:text-brand-blue transition">المشروع الثاني: لوحة تحكم</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">لوحة إدارية متكاملة لإدارة البيانات والتحليلات الحية.</p>
+                        <div class="flex gap-2 pt-2">
+                            <span class="px-3 py-1 rounded-md bg-white/5 text-xs text-brand-blue border border-white/10">Bootstrap</span>
+                            <span class="px-3 py-1 rounded-md bg-white/5 text-xs text-purple-400 border border-white/10">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المشروع الثالث -->
+                <div class="project-card tilt-card rounded-3xl overflow-hidden bg-brand-card border border-white/10 hover:border-brand-purple hover:shadow-[0_15px_40px_rgba(127,0,255,0.25)] transition duration-500 group cursor-pointer"
+                     data-title="المشروع الثالث: صفحة هبوط تفاعلية High-Converting"
+                     data-desc="صفحة هبوط مميزة لعرض المنتجات أو الخدمات مع أنيميشن سلس وحركات بصرية جذابة."
+                     data-tags="HTML, CSS, JavaScript"
+                     data-img="project3.jpg"
+                     data-live="https://example.com"
+                     data-github="https://github.com">
+                    
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="project3.jpg" alt="المشروع الثالث" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-brand-dark/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="px-6 py-3 rounded-full bg-brand-purple text-white font-bold text-sm shadow-[0_0_20px_rgba(127,0,255,0.6)]">معاينة تفاصيل المشروع <i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold group-hover:text-brand-purple transition">المشروع الثالث: صفحة هبوط</h3>
+                        <p class="text-slate-400 text-sm line-clamp-2">صفحة هبوط تفاعلية مصممة لتحقيق أعلى معدلات التحويل.</p>
+                        <div class="flex gap-2 pt-2">
+                            <span class="px-3 py-1 rounded-md bg-white/5 text-xs text-yellow-400 border border-white/10">JavaScript</span>
+                            <span class="px-3 py-1 rounded-md bg-white/5 text-xs text-brand-cyan border border-white/10">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== صفحة الخدمات Services Page ==================== -->
+        <div id="page-services" class="page-content hidden max-w-7xl mx-auto px-6 space-y-16">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl md:text-5xl font-black">
+                    الخدمات <span class="text-brand-cyan">المقدمة</span>
+                </h2>
+                <p class="text-slate-400 max-w-lg mx-auto">حلول متكاملة لمساعدة الشركات والأعمال على النمو الرقمي</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="tilt-card p-8 rounded-3xl bg-brand-card border border-white/10 hover:border-brand-cyan transition duration-300 space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-3xl">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">تطوير واجهات Web Apps</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">بناء تطبيقات ومواقع ويب تفاعلية باستخدام React وJavaScript بأعلى سرعة وأداء مستقر.</p>
+                </div>
+
+                <div class="tilt-card p-8 rounded-3xl bg-brand-card border border-white/10 hover:border-brand-blue transition duration-300 space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-3xl">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">High-Converting Pages</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">تصميم وبناء صفحات هبوط مخصصة لزيادة المبيعات والتحويلات للأنشطة التجارية.</p>
+                </div>
+
+                <div class="tilt-card p-8 rounded-3xl bg-brand-card border border-white/10 hover:border-brand-purple transition duration-300 space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-purple/10 text-brand-purple flex items-center justify-center text-3xl">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold">UI / UX Prototyping</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">تخطيط وتصميم واجهات وتجارب مستخدم عصرية ومريحة بصرياً قبل البدء بالبرمجة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== صفحة التواصل Contact Page ==================== -->
+        <div id="page-contact" class="page-content hidden max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <h2 class="text-4xl md:text-5xl font-black">
+                        دعنا نتحدث عن <span class="text-brand-cyan">مشروعك!</span>
+                    </h2>
+                    <p class="text-slate-400 text-lg leading-relaxed">
+                        جاهز لتحويل أفكارك إلى واقع رقمي استثنائي. تواصل معي الآن وسنقوم بمناقشة كافة التفاصيل.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-brand-card border border-white/10">
+                            <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">البريد الإلكتروني</span>
+                                <a href="mailto:22mohamed1122@gmail.com" class="font-bold hover:text-brand-cyan transition text-lg">22mohamed1122@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-brand-card border border-white/10">
+                            <div class="w-12 h-12 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">الهاتف / الواتساب</span>
+                                <a href="https://wa.me/201210153756" target="_blank" class="font-bold hover:text-brand-blue transition text-lg">+20 121 015 3756</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- نموذج الاتصال -->
+                <form id="contact-form" class="p-8 rounded-3xl bg-brand-card border border-white/10 space-y-6 shadow-2xl">
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-300">الاسم</label>
+                        <input type="text" required placeholder="اسمك الكريم" class="w-full px-4 py-3.5 rounded-xl bg-brand-dark border border-white/10 focus:border-brand-cyan outline-none transition text-white">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-300">البريد الإلكتروني</label>
+                        <input type="email" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl bg-brand-dark border border-white/10 focus:border-brand-cyan outline-none transition text-white">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-300">رسالتك أو تفاصيل مشروعك</label>
+                        <textarea rows="4" required placeholder="اكتب تفاصيل المشروع..." class="w-full px-4 py-3.5 rounded-xl bg-brand-dark border border-white/10 focus:border-brand-cyan outline-none transition text-white"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-[0_0_30px_rgba(0,242,254,0.5)] hover:scale-[1.02] transition duration-300 flex items-center justify-center gap-2 text-lg">
+                        <span>إرسال الرسالة</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ==================== نافذة تفاصيل المشاريع Modal ==================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-brand-card border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative space-y-6">
+            <button id="close-modal" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/10 hover:bg-red-500 transition flex items-center justify-center text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="modal-img" src="" alt="" class="w-full h-64 object-cover rounded-2xl border border-white/10">
+            <h3 id="modal-title" class="text-2xl font-black text-brand-cyan"></h3>
+            <p id="modal-desc" class="text-slate-300 leading-relaxed"></p>
+            <div id="modal-tags" class="flex gap-2"></div>
+            <div class="flex gap-4 pt-4">
+                <a id="modal-live" href="#" target="_blank" class="flex-1 py-3 text-center rounded-xl font-bold bg-brand-cyan text-black hover:brightness-110 transition">معاينة حية <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a id="modal-github" href="#" target="_blank" class="flex-1 py-3 text-center rounded-xl font-bold border border-white/20 hover:bg-white/10 transition">الكود <i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <section id="skills" class="skills-section">
-    <h2 class="section-title">SKILLS</h2>
-    <p class="section-subtitle">Let's Explore Popular Skills & Experience</p>
+    <!-- ==================== الفوتر Footer ==================== -->
+    <footer class="py-8 border-t border-white/10 text-center text-slate-500 text-sm relative z-10">
+        <p>جميع الحقوق محفوظة © <span id="year"></span> | Mohamed Abdulghany ⚡</p>
+    </footer>
 
-    <div class="swiper skills-slider">
-      <div class="swiper-wrapper">
-        
-        <div class="swiper-slide skill-card">
-          <i class="fa-brands fa-html5 skill-icon" style="color: #e34f26;"></i>
-          <h4>Html</h4>
-          <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
-          <span class="percent">95%</span>
-        </div>
-
-        <div class="swiper-slide skill-card">
-          <i class="fa-brands fa-css3-alt skill-icon" style="color: #1572b6;"></i>
-          <h4>Css</h4>
-          <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
-          <span class="percent">95%</span>
-        </div>
-
-        <div class="swiper-slide skill-card">
-          <i class="fa-brands fa-js skill-icon" style="color: #f7df1e;"></i>
-          <h4>Js</h4>
-          <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
-          <span class="percent">90%</span>
-        </div>
-
-        <div class="swiper-slide skill-card">
-          <i class="fa-brands fa-react skill-icon" style="color: #61dafb;"></i>
-          <h4>React</h4>
-          <div class="progress-bar"><div class="progress" style="width: 92%;"></div></div>
-          <span class="percent">92%</span>
-        </div>
-
-        <div class="swiper-slide skill-card">
-          <i class="fa-solid fa-bolt skill-icon" style="color: #bd34fe;"></i>
-          <h4>Vite</h4>
-          <div class="progress-bar"><div class="progress" style="width: 88%;"></div></div>
-          <span class="percent">88%</span>
-        </div>
-
-        <div class="swiper-slide skill-card">
-          <i class="fa-brands fa-bootstrap skill-icon" style="color: #7952b3;"></i>
-          <h4>Bootstrap</h4>
-          <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
-          <span class="percent">95%</span>
-        </div>
-
-        <div class="swiper-slide skill-card">
-          <i class="fa-solid fa-fire skill-icon" style="color: #ffca28;"></i>
-          <h4>Firebase</h4>
-          <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
-          <span class="percent">85%</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="projects-section">
-    <h2 class="section-title">PROJECTS</h2>
-
-    <div class="projects-container">
-      
-      <div class="project-card">
-        <div class="project-img-wrapper"> 
-          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800" alt="Fit Fuel">
-          <a href="#" class="btn-live">Live Preview</a>
-        </div>
-        <div class="project-info">
-          <h3>Fit Fuel</h3>
-          <div class="tags">
-            <span>React</span>
-            <span>Js</span>
-            <span>Firebase</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" alt="Mohamed Portfolio">
-          <a href="#" class="btn-live">Live Preview</a>
-        </div>
-        <div class="project-info">
-          <h3>Mohamed Portfolio</h3>
-          <div class="tags">
-            <span>React</span>
-            <span>Js</span>
-            <span>Firebase</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="contact" class="contact-section">
-    <h2 class="section-title">GET IN TOUCH</h2>
-
-    <div id="alert-box" class="alert-success hidden">
-      <i class="fa-solid fa-circle-check"></i> Message sent successfully!
-    </div>
-
-    <div class="contact-container">
-      <div class="contact-info">
-        <h3>Contact Information</h3>
-        <div class="info-item">
-          <i class="fa-brands fa-whatsapp"></i>
-          <div>
-            <label>WhatsApp / Phone</label>
-            <p>+20 1210153756</p>
-          </div>
-        </div>
-        <div class="info-item">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <label>Location</label>
-            <p>Egypt</p>
-          </div>
-        </div>
-
-        <h4>Follow Me</h4>
-        <div class="social-links">
-          <a href="https://wa.me/201210153756" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-
-      <form id="contact-form" class="contact-form">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" placeholder="Your Name" required>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="Your Email" required>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea rows="4" placeholder="I'd Love To Hear About Your Project" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">
-          <span>Send Message</span> <i class="fa-regular fa-paper-plane"></i>
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 Mohamed Abdelghany. All Rights Reserved.</p>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <script src="script.js"></script>
+    <!-- ملف الـ JavaScript الخارجي -->
+    <script src="Java-Script/script.js"></script>
 </body>
 </html>
