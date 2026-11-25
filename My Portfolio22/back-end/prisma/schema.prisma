@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         String   @default("admin")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("admins")
+}
+
+model SiteMetric {
+  id          String @id @default("portfolio")
+  totalVisits BigInt @default(0) @map("total_visits")
+
+  @@map("site_metrics")
+}
+
+model ActiveVisitor {
+  sessionId String   @id @map("session_id")
+  lastSeen  DateTime @default(now()) @map("last_seen")
+
+  @@index([lastSeen])
+  @@map("active_visitors")
+}
+
+model Review {
+  id           String   @id @default(uuid())
+  reviewerName String   @map("reviewer_name")
+  rating       Int
+  comment      String
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt(sort: Desc)])
+  @@map("reviews")
+}
+
+model ProjectInquiry {
+  id             String   @id @default(uuid())
+  clientName     String   @map("client_name")
+  clientEmail    String   @map("client_email")
+  projectDetails String   @map("project_details")
+  status         String   @default("new")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt(sort: Desc)])
+  @@index([status])
+  @@map("project_inquiries")
+}
