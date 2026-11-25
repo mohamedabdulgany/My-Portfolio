@@ -1,8 +1,11 @@
 /* ==========================================================================
-   التنسيقات الإضافية والأنيميشن الاحترافي للتبديل بين الصفحات
+   التنسيقات العامة والحركات
    ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 105px;
+}
 
-/* تخصيص شريط التمرير Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -17,37 +20,40 @@
     background: #4facfe;
 }
 
-/* تنسيق زر الناف بار النشط حالياً */
-.nav-tab.active {
+:focus-visible {
+    outline: 2px solid #00f2fe;
+    outline-offset: 2px;
+}
+
+#site-header.is-scrolled #header-bar {
+    background: rgba(3, 7, 18, 0.92);
+    border-color: rgba(0, 242, 254, 0.22);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+}
+
+.nav-link.active {
     background: linear-gradient(135deg, #00f2fe, #4facfe);
     color: #030712;
     font-weight: 800;
     box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
 }
 
-/* أنيميشن الظهور السلس عند التنقل بين الصفحات */
-.page-content {
-    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.filter-btn.active {
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    color: #030712;
+    border-color: transparent;
+    box-shadow: 0 0 18px rgba(0, 242, 254, 0.35);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* تأثير الـ 3D Tilt للبطاقات والكرت الشخصي */
 .tilt-card {
     transform-style: preserve-3d;
-    transition: transform 0.1s ease-out, border-color 0.3s ease;
+    transition: transform 0.14s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* حركة مؤشر الكتابة الحية */
+.tilt-card:active {
+    transform: scale(0.985);
+}
+
 #typing-text::after {
     content: '|';
     animation: blink 0.8s infinite;
@@ -56,4 +62,16 @@
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    .tilt-card,
+    #scroll-progress,
+    #typing-text::after {
+        animation: none !important;
+        transition: none !important;
+    }
 }
